@@ -1,0 +1,20 @@
+version: '2'
+services:
+  bcoin-client:
+    build:
+      context: .
+      dockerfile: ./config/containers/ruby/Dockerfile
+    links:
+      - bcoin
+    env_file: .env
+    command: bundle exec rspec
+  bcoin:
+    build:
+      context: ./config/containers/bcoin
+    environment:
+      PATH: ./node_modules/.bin:$PATH
+    env_file: .env
+    expose:
+      - 8332
+    command:
+      - bcoin --config=bcoin.conf

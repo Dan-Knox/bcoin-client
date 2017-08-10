@@ -1,0 +1,14 @@
+{
+  "name": "bcoin-server",
+  "version": "1.0.0",
+  "description": "Bcoin installation for development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dan Knox <dknox@threedotloft.com> (http://danknox.github.io/)",
+  "license": "MIT",
+  "dependencies": {
+    "bcoin": "^1.0.0-beta.14"
+  }
+}
