@@ -9,12 +9,11 @@ services:
     env_file: .env
     command: bundle exec rspec
   bcoin:
-    build:
-      context: ./config/containers/bcoin
+    build: ./config/containers/bcoin
     environment:
       PATH: ./node_modules/.bin:$PATH
     env_file: .env
     expose:
       - 8332
     command:
-      - bcoin --config=bcoin.conf
+      - /bcoin/node_modules/.bin/bcoin --config=/bcoin/bcoin.conf

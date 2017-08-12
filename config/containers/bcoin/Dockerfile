@@ -16,4 +16,4 @@ EXPOSE 8332
 ENV BCOIN_API_KEY bcoin-ruby
 ENV BCOIN_NETWORK testnet
 
-CMD ['bcoin --config=bcoin.conf']
+CMD ['/bcoin/node_modules/.bin/bcoin --config=/bcoin/bcoin.conf']
