@@ -1,4 +1,7 @@
 require "spec_helper"
+require "ostruct"
+
+MockResponse = OpenStruct.new(parsed_response: '')
 
 module Bcoin
   RSpec.describe Client do
@@ -52,19 +55,27 @@ module Bcoin
 
     describe "#request" do
       it "calls the correct class method" do
-        expect(Client).to receive(:get)
+        expect(Client).to receive(:get).and_return MockResponse
         subject.request :get, '/'
       end
 
       it "sets the correct default parameters" do
-        expect(Client).to receive(:get).with '/', subject.default_options
+        expect(Client).to receive(:get)
+          .with('/', subject.default_options)
+          .and_return MockResponse
+          
         subject.request :get, '/'
       end
     end
 
-    [:get, :post, :put, :delete].each do |method|
+    it "#get delegates to #request correctly" do
+      expect(subject).to receive(:request).with(:get, '/', query: {})
+      subject.get '/'
+    end
+
+    [:post, :put, :delete].each do |method|
       it "##{method} delegates to #request correctly" do
-        expect(subject).to receive(:request).with method, '/', {}
+        expect(subject).to receive(:request).with method, '/', {body: '{}'}
         subject.send method, '/'
       end
     end

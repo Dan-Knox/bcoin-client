@@ -1,4 +1,9 @@
 require "bcoin/client/version"
+require "bcoin/client/http_methods"
+require "bcoin/client/base"
+require "bcoin/client/wallet"
+require "bcoin/client/collection"
+require "bcoin/client/wallets"
 require "httparty"
 
 module Bcoin
@@ -46,23 +51,23 @@ module Bcoin
 
     def request method, path, options = {}
       options.merge! default_options
-      self.class.send method, path, options
+      self.class.send(method, path, options).parsed_response
     end
 
     def get path, options = {}
-      request :get, path, options
+      request :get, path, query: options
     end
 
     def post path, options = {}
-      request :post, path, options
+      request :post, path, body: options.to_json
     end
 
     def put path, options = {}
-      request :put, path, options
+      request :put, path, body: options.to_json
     end
 
     def delete path, options = {}
-      request :delete, path, options
+      request :delete, path, body: options.to_json
     end
   end
 end
