@@ -10,6 +10,10 @@ module Bcoin
         '/wallet/' + id.to_s
       end
 
+      def accounts
+        @accounts ||= Accounts.new(self).refresh!
+      end
+
     end
   end
 end

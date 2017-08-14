@@ -2,6 +2,12 @@ require "spec_helper"
 
 module Bcoin
   class Client
+    class Accounts
+      def refresh!
+        self
+      end
+    end
+
     RSpec.describe Wallet do
 
       let :client { Client.new }
@@ -21,6 +27,23 @@ module Bcoin
 
       it "redefines #id" do
         expect(subject.id).to eq 'wallet123'
+      end
+
+      describe "#accounts" do
+        it "retrieves a list of accounts" do
+          expect(subject.accounts).to be_a Accounts
+        end
+
+        it "sets the account's client object as self" do
+          expect(subject.accounts.client).to eq subject
+        end
+
+        it "refreshes the account data" do
+          accounts = Accounts.new(subject)
+          expect(accounts).to receive(:refresh!)
+          expect(Accounts).to receive(:new).and_return(accounts)
+          subject.accounts
+        end
       end
 
     end

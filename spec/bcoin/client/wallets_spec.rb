@@ -43,7 +43,7 @@ module Bcoin
       end
 
       describe "#find" do
-        let :wallet { Wallet.new({id: 'wallet', token: 123}) }
+        let :wallet { Wallet.new(client, {id: 'wallet', token: 123}) }
 
         it "instantiates a new Wallet with an id and optional token" do
           expect(Wallet).to receive(:new)

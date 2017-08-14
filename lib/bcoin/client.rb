@@ -2,8 +2,10 @@ require "bcoin/client/version"
 require "bcoin/client/http_methods"
 require "bcoin/client/base"
 require "bcoin/client/wallet"
+require "bcoin/client/account"
 require "bcoin/client/collection"
 require "bcoin/client/wallets"
+require "bcoin/client/accounts"
 require "httparty"
 
 module Bcoin
