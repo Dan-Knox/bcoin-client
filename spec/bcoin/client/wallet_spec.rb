@@ -46,6 +46,14 @@ module Bcoin
         end
       end
 
+      describe "#balance" do
+        it "retreives wallet balance information" do
+          expect(subject).to receive(:get).and_return({confirmed: 1})
+          expect(subject.balance).to be_a Client::Balance
+          expect(subject.balance.confirmed).to eq 1
+        end
+      end
+
     end
   end
 end

@@ -1,3 +1,6 @@
+require "bcoin/client/accounts"
+require "bcoin/client/balance"
+
 module Bcoin
   class Client
     class Wallet < Base
@@ -12,6 +15,10 @@ module Bcoin
 
       def accounts
         @accounts ||= Accounts.new(self).refresh!
+      end
+
+      def balance
+        @balance ||= Balance.new(self).refresh!
       end
 
     end
