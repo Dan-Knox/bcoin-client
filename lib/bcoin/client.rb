@@ -69,5 +69,9 @@ module Bcoin
     def delete path, options = {}
       request :delete, path, body: options.to_json
     end
+
+    def wallets
+      @wallets ||= Wallets.new(self)
+    end
   end
 end

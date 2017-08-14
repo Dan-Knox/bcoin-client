@@ -5,8 +5,6 @@ module Bcoin
   class Client
     class Wallets < Collection
 
-      include Enumerable
-
       attr_reader :client
 
       def base_path
@@ -18,6 +16,10 @@ module Bcoin
           Wallet.new(client, id: w).refresh!
         }
         self
+      end
+
+      def find attr
+        Wallet.new(client, attr).refresh!
       end
 
     end

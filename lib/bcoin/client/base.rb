@@ -8,7 +8,7 @@ module Bcoin
 
       def initialize client, attr = {}
         @client = client
-        @attributes = symbolize attr
+        self.attributes = attr
       end
 
       # Override this in sub class
@@ -22,12 +22,20 @@ module Bcoin
       end
 
       def refresh!
-        @attributes = get '/'
+        self.attributes = get '/'
         self
       end
 
       def wallet_token
         @attributes[:token] if @attributes
+      end
+
+      def token=(_token)
+        @attributes[:token] = _token
+      end
+
+      def attributes=(attr)
+        @attributes = symbolize attr
       end
 
       private

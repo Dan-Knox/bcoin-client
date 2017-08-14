@@ -23,8 +23,10 @@ module Bcoin
         expect(Base.include?(HttpMethods)).to eq true
       end
 
-      it "symbolizes attributes keys" do
-        expect(Base.new(client, {'test': 123}).attributes[:test]).to eq 123
+      describe "#attributes=" do
+        it "symbolizes attributes keys" do
+          expect(Base.new(client, {'key': 123}).attributes[:key]).to eq 123
+        end
       end
 
       describe "#wallet_token" do
@@ -34,27 +36,46 @@ module Bcoin
         end
       end
 
+      describe "#token=" do
+        it "sets the value of attributes[:token]" do
+          subject.token = 123
+          expect(subject.token).to eq 123
+        end
+      end
+
       describe "#refresh!" do
-        it "calls #get with a base path" do
-          expect(subject).to receive(:get).with '/'
-          subject.refresh!
-        end
+        context "without #wallet_token" do
+          before do
+            expect(subject).to receive(:get)
+              .with('/')
+              .and_return({refreshed: true})
+          end
 
-        it "replaces the current attributes" do
-          expect(subject).to receive(:get).and_return({refreshed: true})
-          subject.refresh!
-          expect(subject.refreshed).to eq true
-        end
+          it "calls #get with a base path" do
+            subject.refresh!
+          end
 
-        it "returns self" do
-          expect(subject).to receive(:get).and_return({})
-          expect(subject.refresh!).to eq subject
+          it "replaces the current attributes" do
+            subject.refresh!
+            expect(subject.refreshed).to eq true
+          end
+
+          it "calls #attributes= to symbolize attributes" do
+            expect(subject).to receive(:attributes=)
+            subject.refresh!
+          end
+
+          it "returns self" do
+            expect(subject.refresh!).to eq subject
+          end
         end
 
         context "when #wallet_token is present" do
           it "merges the token parameter into options" do
             subject.attributes[:token] = 123
-            expect(subject.client).to receive(:get).with subject.base_path + '/', {token: 123}
+            expect(subject.client).to receive(:get)
+              .with(subject.base_path + '/', {token: 123})
+              .and_return({})
             subject.refresh!
           end
         end

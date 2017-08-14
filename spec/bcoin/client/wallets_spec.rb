@@ -42,6 +42,24 @@ module Bcoin
         expect(subject.refresh!).to eq subject
       end
 
+      describe "#find" do
+        let :wallet { Wallet.new({id: 'wallet', token: 123}) }
+
+        it "instantiates a new Wallet with an id and optional token" do
+          expect(Wallet).to receive(:new)
+            .with(client, {id: 'wallet', token: 123})
+            .and_return wallet
+          subject.find({id: 'wallet', token: 123})
+        end
+
+        it "refreshes the wallet data" do
+          expect(Wallet).to receive(:new)
+            .and_return wallet
+          expect(wallet).to receive(:refresh!)
+          subject.find({id: 'wallet', token: 123})
+        end
+      end
+
     end
   end
 end

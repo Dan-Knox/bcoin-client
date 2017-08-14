@@ -63,7 +63,7 @@ module Bcoin
         expect(Client).to receive(:get)
           .with('/', subject.default_options)
           .and_return MockResponse
-          
+
         subject.request :get, '/'
       end
     end
@@ -77,6 +77,12 @@ module Bcoin
       it "##{method} delegates to #request correctly" do
         expect(subject).to receive(:request).with method, '/', {body: '{}'}
         subject.send method, '/'
+      end
+    end
+
+    describe "#wallets" do
+      it "instantiates the Wallets object" do
+        expect(subject.wallets).to be_a Client::Wallets
       end
     end
   end
