@@ -23,12 +23,6 @@ module Bcoin
         expect(Base.include?(HttpMethods)).to eq true
       end
 
-      describe "#attributes=" do
-        it "symbolizes attributes keys" do
-          expect(Base.new(client, {'key': 123}).attributes[:key]).to eq 123
-        end
-      end
-
       describe "#wallet_token" do
         it "returns the value of attributes[:token]" do
           subject.attributes[:token] = 123
@@ -40,6 +34,20 @@ module Bcoin
         it "sets the value of attributes[:token]" do
           subject.token = 123
           expect(subject.token).to eq 123
+        end
+      end
+
+      describe "#attributes=" do
+        it "symbolizes attributes keys" do
+          expect(Base.new(client, {'key': 123}).attributes[:key]).to eq 123
+        end
+      end
+
+      describe "#error=" do
+        it "sets the error attribute" do
+          subject.error = :error
+          expect(subject.error).to eq :error
+          expect(subject.attributes[:error]). to eq :error
         end
       end
 

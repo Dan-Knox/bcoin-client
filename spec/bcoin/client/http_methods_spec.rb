@@ -37,7 +37,7 @@ module Bcoin
         it "sets the error attribute on failure" do
           expect(subject.client).to receive(method).and_return 'error' => true
           subject.send method, '/'
-          expect(subject.attributes[:error]).to eq true
+          expect(subject.error).to eq true
         end
       end
 

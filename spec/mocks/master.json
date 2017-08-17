@@ -1,0 +1,13 @@
+{
+  "encrypted": false,
+  "key": {
+    "xprivkey": "tprv8ZgxMBicQKsPe7977psQCjBBjWtLDoJVPiiKog42RCoShJLJATYeSkNTzdwfgpkcqwrPYAmRCeudd6kkVWrs2kH5fnTaxrHhi1TfvgxJsZD",
+    "mnemonic": {
+      "bits": 128,
+      "language": "english",
+      "entropy": "a560ac7eb5c2ed412a4ba0790f73449d",
+      "phrase": "pistol air cabbage high conduct party powder inject jungle knee spell derive",
+      "passphrase": ""
+    }
+  }
+}

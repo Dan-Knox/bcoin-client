@@ -11,4 +11,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  def load_mock!(name)
+    path = __dir__ + '/mocks/'
+    JSON.load(File.read(path + name))
+  end
 end

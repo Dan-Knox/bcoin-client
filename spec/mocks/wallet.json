@@ -1,0 +1,38 @@
+{
+  "network": "regtest",
+  "wid": 1,
+  "id": "btcme",
+  "initialized": true,
+  "watchOnly": false,
+  "accountDepth": 1,
+  "token": "2d04e217877f15ba920d02c24c6c18f4d39df92f3ae851bec37f0ade063244b2",
+  "tokenDepth": 0,
+  "state": {
+    "tx": 177,
+    "coin": 177,
+    "unconfirmed": "8150.0",
+    "confirmed": "8150.0"
+  },
+  "master": {
+    "encrypted": false
+  },
+  "account": {
+    "name": "default",
+    "initialized": true,
+    "witness": false,
+    "watchOnly": false,
+    "type": "pubkeyhash",
+    "m": 1,
+    "n": 1,
+    "accountIndex": 0,
+    "receiveDepth": 8,
+    "changeDepth": 1,
+    "nestedDepth": 0,
+    "lookahead": 10,
+    "receiveAddress": "mu5Puppq4Es3mibRskMwoGjoZujHCFRwGS",
+    "nestedAddress": null,
+    "changeAddress": "n3nFYgQR2mrLwC3X66xHNsx4UqhS3rkSnY",
+    "accountKey": "tpubDC5u44zLNUVo2gPVdqCbtX644PKccH5VZB3nqUgeCiwKoi6BQZGtr5d6hhougcD6PqjszsbR3xHrQ5k8yTbUt64aSthWuNdGi7zSwfGVuxc",
+    "keys": []
+  }
+}

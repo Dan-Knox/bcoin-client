@@ -1,5 +1,6 @@
 require "bcoin/client/accounts"
 require "bcoin/client/balance"
+require "bcoin/client/master"
 
 module Bcoin
   class Client
@@ -55,6 +56,15 @@ module Bcoin
       def lock
         post '/lock'
         !error?
+      end
+
+      # Retrieves the wallet HD Master Key.
+      # @return [Bcoin::Client::Master] The wallet master key object.
+      def master
+        @master ||= begin
+          response = get '/master'
+          Master.new self, response
+        end
       end
 
       # Retrieves a new wallet API token.

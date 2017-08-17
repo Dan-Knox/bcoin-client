@@ -43,8 +43,8 @@ module Bcoin
       private
 
       def set_error_from response = {}
-        if @attributes && response['error']
-          @attributes[:error] = response['error']
+        if response.is_a?(Hash) &&  response['error']
+          self.error = response['error']
         end
       end
 

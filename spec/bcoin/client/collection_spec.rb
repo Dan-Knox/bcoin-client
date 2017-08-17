@@ -34,6 +34,29 @@ module Bcoin
           expect(subject).to receive(:get).with '/'
           subject.refresh!
         end
+
+        it "allows the path to be overriden" do
+          expect(subject).to receive(:get).with '/override/'
+          subject.refresh! '/override'
+        end
+      end
+
+      describe "#error?" do
+        it "returns false if error is not present" do
+          expect(subject.error?).to eq false
+        end
+
+        it "returns true if error is present" do
+          subject.error = :error
+          expect(subject.error?).to eq true
+        end
+      end
+
+      describe "#error=" do
+        it "sets the error instance variable" do
+          subject.error = :error
+          expect(subject.error).to eq :error
+        end
       end
 
     end

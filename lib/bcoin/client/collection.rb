@@ -7,7 +7,7 @@ module Bcoin
       include Enumerable
       include HttpMethods
 
-      attr_reader :client, :collection
+      attr_reader :client, :collection, :error
 
       def initialize client, collection = []
         @client = client
@@ -23,8 +23,19 @@ module Bcoin
         @collection.each {|w| block.call(w) }
       end
 
-      def refresh!
-        get '/'
+      # Allow for overriding of the path for situations
+      # like the wallet list retrieval. See the comment
+      # for Wallets#base_path for details.
+      def refresh! path = ''
+        get path + '/'
+      end
+
+      def error?
+        @error ? true : false
+      end
+
+      def error=(_error)
+        @error = _error
       end
 
     end

@@ -102,6 +102,19 @@ module Bcoin
         end
       end
 
+      describe "#master" do
+        let(:master_json) { load_mock! 'master.json' }
+
+        it "retrieves the wallet's master key" do
+          expect(subject).to receive(:get)
+            .with('/master')
+            .and_return master_json
+
+          expect(subject.master).to be_a Bcoin::Client::Master
+          expect(subject.master.client).to eq subject
+        end
+      end
+
       describe "#retoken" do
         it "retrieves a new wallet API token" do
           expect(subject).to receive(:post)

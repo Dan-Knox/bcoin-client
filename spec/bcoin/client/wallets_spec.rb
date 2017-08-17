@@ -24,7 +24,7 @@ module Bcoin
       end
 
       it "redefines #base_path" do
-        expect(subject.base_path).to eq '/wallet/_admin/wallets'
+        expect(subject.base_path).to eq '/'
       end
 
       it "refreshes it's wallets collection" do
@@ -39,7 +39,9 @@ module Bcoin
       end
 
       it "returns self from #refresh!" do
-        expect(subject).to receive(:get).and_return []
+        expect(subject.client).to receive(:get)
+          .with('/wallet/_admin/wallets/', {})
+          .and_return []
         expect(subject.refresh!).to eq subject
       end
 
@@ -58,6 +60,27 @@ module Bcoin
             .and_return wallet
           expect(wallet).to receive(:refresh!)
           subject.find({id: 'wallet', token: 123})
+        end
+      end
+
+      describe "#create" do
+        let(:wallet_json) { load_mock! 'wallet.json' }
+
+        it "sends an HTTP Post to base_path with options" do
+          expect(subject.client).to receive(:post)
+            .with('/wallet/', id: 'btcme', type: :pubkeyhash)
+            .and_return wallet_json
+
+          subject.create id: 'btcme', type: :pubkeyhash
+        end
+
+        it "returns a new wallet object" do
+          expect(subject.client).to receive(:post)
+            .and_return wallet_json
+
+          wallet = subject.create id: 'btcme', type: :pubkeyhash
+          expect(wallet).to be_a Wallet
+          expect(wallet.id).to eq 'btcme'
         end
       end
 
