@@ -6,6 +6,7 @@ module Bcoin
     class Wallet
       # Override #refresh! in wallet to avoid network calls
       def refresh!
+        self
       end
     end
 

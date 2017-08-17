@@ -54,6 +54,77 @@ module Bcoin
         end
       end
 
+      describe "#passphrase" do
+        it "send the correct HTTP request" do
+          expect(subject).to receive(:post)
+            .with('/passphrase', {old: 'oldpass', new: 'newpass'})
+            .and_return({'success': true})
+
+          subject.passphrase old: 'oldpass', new: 'newpass'
+        end
+
+        it "sets the error attribute on failure" do
+          expect(subject.client).to receive(:post).and_return 'error' => 'some error'
+          subject.passphrase old: 'oldpass', new: 'newpass'
+          expect(subject.error?).to eq true
+        end
+
+        it "returns true on success" do
+          expect(subject.client).to receive(:post).and_return 'success' => true
+          res = subject.passphrase old: 'oldpass', new: 'newpass'
+          expect(res).to eq true
+        end
+
+        it "returns false on error" do
+          expect(subject.client).to receive(:post).and_return 'error' => true
+          res = subject.passphrase old: true, new: true
+          expect(res).to eq false
+        end
+      end
+
+      describe "#unlock" do
+        it "unlocks the wallet's master key for 'timeout' seconds" do
+          expect(subject).to receive(:post)
+            .with('/unlock', passphrase: 'testpass', timeout: 60)
+            .and_return 'success' => true
+
+          subject.unlock passphrase: 'testpass', timeout: 60
+        end
+      end
+
+      describe "#unlock" do
+        it "locks the wallet's master key" do
+          expect(subject).to receive(:post)
+            .with('/lock')
+            .and_return 'success' => true
+
+          subject.lock
+        end
+      end
+
+      describe "#retoken" do
+        it "retrieves a new wallet API token" do
+          expect(subject).to receive(:post)
+            .with('/retoken')
+            .and_return 'token' => 'RETOKENME'
+
+          subject.retoken
+          expect(subject.token).to eq 'RETOKENME'
+        end
+      end
+
+      describe "#error?" do
+        it "returns true when error is present" do
+          subject.attributes[:error] = 'other error'
+          expect(subject.error?).to be true
+        end
+
+        it "returns false when error is not present" do
+          subject.attributes.delete(:error)
+          expect(subject.error?).to be false
+        end
+      end
+
     end
   end
 end
