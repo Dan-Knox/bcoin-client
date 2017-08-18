@@ -30,21 +30,21 @@ module Bcoin
         @attributes[:token] if @attributes
       end
 
-      def token=(_token)
+      def token= _token
         @attributes[:token] = _token
       end
 
-      def attributes=(attr)
+      def attributes= attr
         @attributes = symbolize attr
       end
 
-      def error=(_error)
+      def error= _error
         @attributes[:error] = _error
       end
 
       private
 
-      def symbolize(attr)
+      def symbolize attr
         symbolized = {}
         attr.each do |k,v|
           symbolized[k.to_sym] = v
