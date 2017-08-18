@@ -2,11 +2,6 @@ require "spec_helper"
 
 module Bcoin
   class Client
-    class Accounts
-      def refresh!
-        self
-      end
-    end
 
     RSpec.describe Wallet do
 
@@ -30,6 +25,10 @@ module Bcoin
       end
 
       describe "#accounts" do
+        before do
+          expect(subject).to receive(:get).and_return []
+        end
+        
         it "retrieves a list of accounts" do
           expect(subject.accounts).to be_a Accounts
         end
@@ -40,7 +39,7 @@ module Bcoin
 
         it "refreshes the account data" do
           accounts = Accounts.new(subject)
-          expect(accounts).to receive(:refresh!)
+          expect(accounts).to receive(:refresh!).and_call_original
           expect(Accounts).to receive(:new).and_return(accounts)
           subject.accounts
         end

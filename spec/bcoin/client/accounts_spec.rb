@@ -2,13 +2,6 @@ require "spec_helper"
 
 module Bcoin
   class Client
-
-    class Account
-      # Override #refresh! in wallet to avoid network calls
-      def refresh!
-      end
-    end
-
     RSpec.describe Accounts do
 
       # See comment for attr_reader :client in accounts.rb
@@ -28,26 +21,26 @@ module Bcoin
         expect(subject.base_path).to eq '/account'
       end
 
-      it "refreshes it's wallets collection" do
-        expect(Account).to receive(:new)
-          .exactly(3).times do |c, attr|
-            expect(c).to be_a Client::Wallet
-            expect([1,2,3].include?(attr[:name])).to eq true
-          end.and_call_original
-
+      it "refreshes it's accounts collection" do
+        #pending "assholes be fucking me"
         expect(subject).to receive(:get).and_return([1,2,3])
+        expect(subject.client).to receive(:get).at_least(3).times
+          .and_return(load_mock!('wallet.json'))
         subject.refresh!
+        expect(subject.first.network).to eq 'regtest'
       end
 
       it "returns self from #refresh!" do
+        #pending "assholes be fucking me"
         expect(subject).to receive(:get).and_return []
         expect(subject.refresh!).to eq subject
       end
 
       describe "#find" do
-        let :account { Account.new({name: 'account123'}) }
+        let :account { Account.new(wallet, {name: 'account123'}) }
 
-        it "instantiates a new Account with an id and optional token" do
+        it "instantiates a new Account with the name attribute" do
+          expect(wallet).to receive(:get).and_return({name: 'account123'})
           expect(Account).to receive(:new)
             .with(wallet, {name: 'account123'})
             .and_return account
