@@ -4,6 +4,7 @@ require "bcoin/client/master"
 
 module Bcoin
   class Client
+    # The primary bcoin.io Wallet object.
     class Wallet < Base
 
       def id
