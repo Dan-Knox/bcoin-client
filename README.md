@@ -1,8 +1,10 @@
 # Bcoin::Client
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bcoin/client`. To experiment with that code, run `bin/console` for an interactive prompt.
+Ruby client for the [bcoin.io](http://bcoin.io) bitcoin node. This
+client implements the HTTP wallet API methods. Perhaps one day I will
+add a consumer for the WebSocket wallet events API.
 
-TODO: Delete this and the text above, and describe your gem
+This gem is developed and maintained by Dan Knox <dk@bitfs.us>.
 
 ## Installation
 
