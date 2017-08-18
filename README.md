@@ -219,6 +219,59 @@ pry> wallet.master.refresh!
   }>
 ```
 
+Finally, lets go ahead and send a transaction.
+
+```ruby
+pry> wallet.send rate: 0.0003, outputs: [{value: 1.5, address: '1LYEVNtioaiVkkhpJgPA4m5hAitpXFSeNc'}]
+=> {
+  {
+    "wid": 2,
+    "id": "dan",
+    "hash": "d9c7526b00f6d563200f685e6e229f0b41982153502467497153f7f466bd46d2",
+    "height": -1,
+    "block": null,
+    "ts": 0,
+    "ps": 1502837803,
+    "date": "2017-08-15T22:56:43Z",
+    "index": -1,
+    "size": 225,
+    "virtualSize": 225,
+    "fee": 4540,
+    "rate": 20177,
+    "confirmations": 0,
+    "inputs": [
+      {
+        "value": 5000000000,
+        "address": "RMKoN2RDoNMCvGKx2xigLezsDHBVV2WQ77",
+        "path": {
+          "name": "default",
+          "account": 0,
+          "change": false,
+          "derivation": "m/0'/0/0"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "value": 500000000,
+        "address": "RW6vfe34Qz3d6SmS3cnnQ2VyhQr6whWxpa",
+        "path": null
+      },
+      {
+        "value": 4499995460,
+        "address": "RWFa7WXvhnc6GWeFhDUHAR38CYarWaMw9S",
+        "path": {
+          "name": "default",
+          "account": 0,
+          "change": true,
+          "derivation": "m/0'/1/0"
+        }
+      }
+    ],
+    "tx": "0100000001659a478b1eb89bc5df48cd3a641d7996a644e2b05138a5e85c6483b9add9d4b0000000006a4730440220787987deb06a23e03b969abe8a95489aea604c1f5ff38657c40ced41b80b166102204d84297cf720344fa4f2119b8bd43b206b811a0fd535c24dcc80140eab0d0788012102354eb584896a4a2aea9729d0eff420f73193b8de6c55bdf6e6857cfede22ffbcffffffff020065cd1d000000001976a914e4699de8892b8623e1f87700fabc53470f698adc88ac447b380c010000001976a914e60c33f1d0c47fe550c33de373f0af79a58e788988ac00000000"
+  }>
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
