@@ -14,6 +14,10 @@ module Bcoin
         @collection = collection
       end
 
+      def inspect
+        printf "#<%s @collection=%p>", self.class.name, @collection
+      end
+
       # Redefine in sub class
       def base_path
         '/collection'

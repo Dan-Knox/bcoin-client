@@ -35,5 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "guard-rspec", "~> 4.7"
   spec.add_development_dependency "pry", "~> 0.10"
+  spec.add_development_dependency "pry-doc", "~> 0.11"
   spec.add_dependency "httparty", "~> 0.15"
 end

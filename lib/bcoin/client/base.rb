@@ -11,6 +11,10 @@ module Bcoin
         self.attributes = attr
       end
 
+      def inspect
+        printf "#<%s @attributes=%p>", self.class.name, @attributes
+      end
+
       # Override this in sub class
       def id
         'base'
