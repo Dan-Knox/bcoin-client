@@ -47,10 +47,11 @@ pry> client.wallets.refresh!
 => #<Bcoin::Client::Wallets @collection=[...]>
 ```
 
-Lets grab the first wallet in the collection.
+Lets find a wallet by id.
 
 ```ruby
-pry> wallet = client.wallets.first
+# You can also pass the :token parameter if wallet auth is on.
+pry> wallet = client.wallets.find id: 'primary'
 => #<Bcoin::Client::Wallet @attributes={
   :network=>"main",
   :wid=>1,
