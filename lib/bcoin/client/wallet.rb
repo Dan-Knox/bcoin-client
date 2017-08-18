@@ -81,6 +81,15 @@ module Bcoin
         end
       end
 
+      # Create, sign, and send a new transaction.
+      # @params [Hash] opts Options for the new transaction.
+      # @option opts :rate Rate for the bitcoin network.
+      # @option opts :outputs => [{:value => '', :address => ''}]
+      def send options = {}
+        response = post '/send', options
+        error? ? false : response
+      end
+
       # Checks for an error returned during a request.
       # @return [true, false]
       def error?

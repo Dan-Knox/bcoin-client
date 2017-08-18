@@ -126,6 +126,29 @@ module Bcoin
         end
       end
 
+      describe "#send" do
+        it "sends a new transaction to the bitcoin node" do
+          expect(subject).to receive(:post)
+            .with('/send', rate: 0.005, outputs: [{value: 1, address: 'btcaddr'}])
+
+            subject.send rate: 0.005, outputs: [{value: 1, address: 'btcaddr'}]
+        end
+
+        it "returns the new transaction on success" do
+          expect(subject).to receive(:post)
+            .and_return load_mock! 'send.json'
+
+          expect(subject.send rate: 0.005).to be_a Hash
+        end
+
+        it "returns false on failure" do
+          expect(subject.client).to receive(:post)
+            .and_return 'error' => 'some error'
+
+          expect(subject.send rate: 0.005).to eq false
+        end
+      end
+
       describe "#error?" do
         it "returns true when error is present" do
           subject.attributes[:error] = 'other error'
