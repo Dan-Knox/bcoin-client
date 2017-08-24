@@ -6,7 +6,7 @@ module Bcoin
     RSpec.describe Wallet do
 
       let :client { Client.new }
-      subject { Wallet.new(client, id: 'wallet123', token: 123) }
+      subject { Wallet.new(client, id: 'wallet123', token: 123, account: {name: 'default'}) }
 
       it "extends Bcoin::Client::Base" do
         expect(Wallet.ancestors.include?(Base)).to eq true
@@ -28,7 +28,7 @@ module Bcoin
         before do
           expect(subject).to receive(:get).and_return []
         end
-        
+
         it "retrieves a list of accounts" do
           expect(subject.accounts).to be_a Accounts
         end
@@ -42,6 +42,12 @@ module Bcoin
           expect(accounts).to receive(:refresh!).and_call_original
           expect(Accounts).to receive(:new).and_return(accounts)
           subject.accounts
+        end
+      end
+
+      describe "#account" do
+        it "returns the default account" do
+          expect(subject.account).to be_a Account
         end
       end
 

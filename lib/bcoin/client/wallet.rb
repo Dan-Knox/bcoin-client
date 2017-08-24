@@ -21,6 +21,13 @@ module Bcoin
         @accounts ||= Accounts.new(self).refresh!
       end
 
+      # Access the default account without making another
+      # network request.
+      # @return [Bcoin::Client::Account]
+      def account
+        @account ||= Account.new(self, @attributes[:account])
+      end
+
       # Retrieve balance information for this wallet.
       # @return [Bcoin::Client::Balance]
       def balance
