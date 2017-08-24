@@ -77,5 +77,15 @@ module Bcoin
     def wallets
       @wallets ||= Wallets.new(self)
     end
+
+    # Check the current rate for processing a transaction
+    # within x number of blocks.
+    # @params [Integer] Blocks Number of blocks the transaction
+    #   will be processed within if paying the returned rate.
+    # @return [Float] Rate
+    def fee blocks = 1
+      response = get '/fee', blocks: blocks
+      response['rate']
+    end
   end
 end

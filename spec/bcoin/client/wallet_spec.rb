@@ -131,6 +131,13 @@ module Bcoin
         end
       end
 
+      describe "#fee" do
+        it "delegates to #client" do
+          expect(subject.client).to receive(:fee)
+          subject.fee
+        end
+      end
+
       describe "#send" do
         it "sends a new transaction to the bitcoin node" do
           expect(subject).to receive(:post)

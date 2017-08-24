@@ -89,6 +89,15 @@ module Bcoin
         end
       end
 
+      # Check the current fee for processing a transaction
+      # within x number of blocks.
+      # @params [Integer] Blocks Number of blocks the transaction
+      #   will be processed within if paying the returned rate.
+      # @return [Float] Rate
+      def fee blocks = 1
+        client.fee blocks
+      end
+
       # Create, sign, and send a new transaction.
       # @params [Hash] opts Options for the new transaction.
       # @option opts :rate Rate for the bitcoin network.

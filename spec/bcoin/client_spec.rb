@@ -85,5 +85,15 @@ module Bcoin
         expect(subject.wallets).to be_a Client::Wallets
       end
     end
+
+    describe "#fee" do
+      it "performs a get request to /fee" do
+        expect(subject).to receive(:get)
+          .with('/fee', blocks: 1)
+          .and_return 'rate' => 0.005
+
+        subject.fee
+      end
+    end
   end
 end
