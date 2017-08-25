@@ -1,6 +1,6 @@
 # Bcoin::Client
 
-[![Build Status](https://travis-ci.org/DanKnox-BitFS/bcoin-client.svg?branch=master)](https://travis-ci.org/DanKnox-BitFS/bcoin-client)
+[![Build Status](https://travis-ci.org/DanKnox-BitFS/bcoin-client.svg?branch=master)](https://travis-ci.org/DanKnox-BitFS/bcoin-client) [![Gem Version](https://badge.fury.io/rb/bcoin-client.svg)](https://badge.fury.io/rb/bcoin-client)
 
 Ruby client for the [bcoin.io](http://bcoin.io) bitcoin node. This
 client implements the HTTP wallet API methods. Perhaps one day I will
