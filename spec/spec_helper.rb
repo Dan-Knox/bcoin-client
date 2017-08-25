@@ -1,4 +1,8 @@
 require "bundler/setup"
+require 'coveralls'
+
+Coveralls.wear!
+
 require "bcoin/client"
 
 RSpec.configure do |config|
@@ -13,6 +17,7 @@ RSpec.configure do |config|
   end
 
   def load_mock!(name)
+
     path = __dir__ + '/mocks/'
     JSON.load(File.read(path + name))
   end
