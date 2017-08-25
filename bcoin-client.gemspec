@@ -7,11 +7,11 @@ Gem::Specification.new do |spec|
   spec.name          = "bcoin-client"
   spec.version       = Bcoin::Client::VERSION
   spec.authors       = ["Dan Knox"]
-  spec.email         = ["dknox@threedotloft.com"]
+  spec.email         = ["dk@bitfs.us","dknox@threedotloft.com"]
 
   spec.summary       = %q{Client for the bcoin.io bitcoin node.}
   spec.description   = %q{Client for the bcoin.io bitcoin node including their wallet API.}
-  spec.homepage      = "http://github.com/DanKnox-BitFS/bcoin-ruby"
+  spec.homepage      = "http://github.com/DanKnox-BitFS/bcoin-client"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
