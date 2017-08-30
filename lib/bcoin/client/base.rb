@@ -42,6 +42,10 @@ module Bcoin
         @attributes = symbolize attr
       end
 
+      def error
+        @attributes[:error]
+      end
+
       def error= _error
         @attributes[:error] = _error
       end

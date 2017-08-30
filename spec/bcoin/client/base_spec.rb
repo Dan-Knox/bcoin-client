@@ -43,6 +43,13 @@ module Bcoin
         end
       end
 
+      describe "#error" do
+        it "accesses the error attribute" do
+          subject.error = :error
+          expect(subject.error).to eq :error
+        end
+      end
+
       describe "#error=" do
         it "sets the error attribute" do
           subject.error = :error
