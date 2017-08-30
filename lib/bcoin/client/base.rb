@@ -50,7 +50,7 @@ module Bcoin
         @attributes[:error] = _error
       end
 
-      def respond_to? method
+      def respond_to? method, include_all = false
         @attributes[method] ? true : super
       end
 
