@@ -46,6 +46,10 @@ module Bcoin
         @attributes[:error] = _error
       end
 
+      def respond_to? method
+        @attributes[method] ? true : super
+      end
+
       private
 
       def symbolize attr

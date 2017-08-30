@@ -99,6 +99,12 @@ module Bcoin
         end
       end
 
+      describe "#respond_to?" do
+        it "returns true for attribute methods" do
+          expect(subject.respond_to?(:test)).to eq true
+        end
+      end
+
     end
   end
 end
