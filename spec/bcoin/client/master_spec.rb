@@ -5,9 +5,9 @@ module Bcoin
     RSpec.describe Master do
 
       # See comment for attr_reader :client in account.rb
-      let :master_json { load_mock! 'master.json' }
-      let :client { Client.new }
-      let :wallet { Wallet.new(client, id: 'wallet123', token: 123) }
+      let(:master_json) { load_mock! 'master.json' }
+      let(:client) { Client.new }
+      let(:wallet) { Wallet.new(client, id: 'wallet123', token: 123) }
       subject { Master.new(wallet, master_json) }
 
       it "extends Bcoin::Client::Base" do

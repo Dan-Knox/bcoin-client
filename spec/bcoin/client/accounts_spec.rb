@@ -5,8 +5,8 @@ module Bcoin
     RSpec.describe Accounts do
 
       # See comment for attr_reader :client in accounts.rb
-      let :client { Client.new }
-      let :wallet { Wallet.new(client, id: 'wallet123', token: 123) }
+      let(:client) { Client.new }
+      let(:wallet) { Wallet.new(client, id: 'wallet123', token: 123) }
       subject { Accounts.new wallet, [1,2,3] }
 
       it "extends Collection" do
@@ -37,7 +37,7 @@ module Bcoin
       end
 
       describe "#find" do
-        let :account { Account.new(wallet, {name: 'account123'}) }
+        let(:account) { Account.new(wallet, {name: 'account123'}) }
 
         it "instantiates a new Account with the name attribute" do
           expect(wallet).to receive(:get).and_return({name: 'account123'})

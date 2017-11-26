@@ -5,7 +5,7 @@ module Bcoin
 
     RSpec.describe Wallet do
 
-      let :client { Client.new }
+      let(:client) { Client.new }
       subject { Wallet.new(client, id: 'wallet123', token: 123, account: {name: 'default'}) }
 
       it "extends Bcoin::Client::Base" do

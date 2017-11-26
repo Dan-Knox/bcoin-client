@@ -4,7 +4,7 @@ module Bcoin
   class Client
     RSpec.describe Base do
 
-      let :client { Client.new }
+      let(:client) { Client.new }
       subject { Base.new(client, test: 123) }
 
       it "stores a reference to the current Bcoin::Client instance" do
