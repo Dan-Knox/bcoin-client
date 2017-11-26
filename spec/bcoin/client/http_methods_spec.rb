@@ -17,7 +17,7 @@ module Bcoin
 
     RSpec.describe 'Bcoin::Client::HttpMethods' do
 
-      let :client { Client.new }
+      let(:client) { Client.new }
       subject { TestClass.new(client) }
 
       it "stores a reference to the current Bcoin::Client instance" do

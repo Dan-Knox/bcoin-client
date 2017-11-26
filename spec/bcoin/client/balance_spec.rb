@@ -5,8 +5,8 @@ module Bcoin
     RSpec.describe Balance do
 
       # See comment for attr_reader :client in account.rb
-      let :client { Client.new }
-      let :wallet { Wallet.new(client, id: 'wallet123', token: 123) }
+      let(:client) { Client.new }
+      let(:wallet) { Wallet.new(client, id: 'wallet123', token: 123) }
       subject { Balance.new(wallet, name: 'account123') }
 
       it "extends Bcoin::Client::Base" do

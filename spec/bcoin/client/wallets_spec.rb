@@ -5,7 +5,7 @@ module Bcoin
 
     RSpec.describe Wallets do
 
-      let :client { Client.new }
+      let(:client) { Client.new }
       subject { Wallets.new client, [1,2,3] }
 
       it "extends Collection" do
@@ -44,7 +44,7 @@ module Bcoin
       end
 
       describe "#find" do
-        let :wallet { Wallet.new(client, {id: 'wallet', token: 123}) }
+        let(:wallet) { Wallet.new(client, {id: 'wallet', token: 123}) }
         before do
           expect(wallet).to receive :refresh!
         end
